@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { margin: 0; font-family: 'Public Sans', system-ui, sans-serif; }
+    ::-webkit-scrollbar { width: 0; height: 0; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:#EEF1F5;padding:24px 0;font-family:'Public Sans',system-ui,sans-serif;">
+  <div style="position:relative;width:420px;height:880px;background:#FFFFFF;border-radius:44px;overflow:hidden;box-shadow:0 24px 70px rgba(15,42,74,0.22),0 2px 6px rgba(15,42,74,0.08);display:flex;flex-direction:column;">
+
+    <!-- status bar -->
+    <div style="height:46px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-size:14px;font-weight:600;color:#1F2A37;">
+      <span style="font-variant-numeric:tabular-nums;">09:41</span>
+      <span style="display:flex;align-items:center;gap:7px;color:#1F2A37;">
+        <span style="font-size:12px;letter-spacing:1px;">5G</span>
+        <span style="display:inline-block;width:22px;height:11px;border:1.5px solid #1F2A37;border-radius:3px;position:relative;"><span style="position:absolute;inset:1.5px;width:70%;background:#1F2A37;border-radius:1px;"></span></span>
+      </span>
+    </div>
+
+    <!-- ===================== START ===================== -->
+    <sc-if value="{{ isStart }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;padding:18px 30px 34px;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:0;">
+          <div style="position:relative;width:60px;height:60px;border-radius:17px;background:#1C6DD0;box-shadow:0 8px 18px rgba(28,109,208,0.3);margin-bottom:26px;">
+            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:9px;height:30px;background:#fff;border-radius:3px;"></span>
+            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:9px;background:#fff;border-radius:3px;"></span>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2.5px;color:#1C6DD0;text-transform:uppercase;margin-bottom:12px;">BAS · Sick Call Ops</div>
+          <h1 style="margin:0 0 14px;font-size:34px;line-height:1.12;font-weight:800;color:#0F2742;letter-spacing:-0.5px;">Medication<br>Competency Quiz</h1>
+          <p style="margin:0 0 26px;font-size:16px;line-height:1.5;color:#5A6675;max-width:300px;">50 multiple-choice questions on the meds you'll be prescribing. Untimed — navigate freely, score and review at the end.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Analgesics</span>
+            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Antihistamines</span>
+            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">GI</span>
+            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Cold &amp; Flu</span>
+            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Topicals</span>
+          </div>
+        </div>
+        <div style="margin-top:26px;display:flex;flex-direction:column;gap:7px;">
+          <label style="font-size:13px;font-weight:700;color:#3C4855;letter-spacing:0.2px;">Full name / rank</label>
+          <input type="text" value="{{ nameVal }}" onChange="{{ onNameChange }}" placeholder="e.g. Spc. Smith" autocomplete="name" style="width:100%;height:54px;border:1.5px solid #D6DEE8;border-radius:13px;padding:0 16px;font-family:inherit;font-size:16px;color:#1F2A37;outline:none;background:#F8FAFB;" style-focus="border-color:#1C6DD0;background:#fff;box-shadow:0 0 0 4px rgba(28,109,208,0.12);" />
+        </div>
+        <button onClick="{{ onStart }}" disabled="{{ beginDisabled }}" style="{{ beginStyle }}">Begin quiz <span style="font-size:20px;font-weight:500;">›</span></button>
+        <div style="text-align:center;font-size:13px;color:#94A0AD;margin-top:14px;">50 questions · ~20 min · 80% to pass</div>
+      </div>
+    </sc-if>
+
+    <!-- ===================== QUIZ / REVIEW ===================== -->
+    <sc-if value="{{ isQuizView }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0;">
+
+        <!-- top bar -->
+        <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:4px 22px 0;">
+          <button onClick="{{ onOpenDrawer }}" aria-label="Open question list" style="width:42px;height:42px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:9px;border-radius:11px;">
+            <span style="display:block;height:2.5px;width:100%;background:#26323F;border-radius:2px;"></span>
+            <span style="display:block;height:2.5px;width:100%;background:#26323F;border-radius:2px;"></span>
+            <span style="display:block;height:2.5px;width:72%;background:#26323F;border-radius:2px;"></span>
+          </button>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:#0F2742;letter-spacing:0.5px;">{{ counterText }}</span>
+            <sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ onExitReview }}" style="border:1.5px solid #D6DEE8;background:#fff;color:#42505E;font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px;cursor:pointer;">Results</button>
+            </sc-if>
+          </div>
+        </div>
+
+        <!-- progress -->
+        <div style="flex:none;padding:14px 22px 6px;">
+          <div style="height:7px;width:100%;background:#E7ECF2;border-radius:99px;overflow:hidden;">
+            <div style="height:100%;border-radius:99px;background:#1C6DD0;transition:width .3s ease;width: {{ progressPct }}%;"></div>
+          </div>
+        </div>
+
+        <!-- scroll content -->
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:18px 26px 8px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:2px;color:#1C6DD0;text-transform:uppercase;margin-bottom:14px;">{{ currentTag }}</div>
+          <h2 style="margin:0 0 24px;font-size:23px;line-height:1.34;font-weight:700;color:#16202B;letter-spacing:-0.2px;text-wrap:pretty;">{{ currentQuestion }}</h2>
+
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <sc-for list="{{ options }}" as="opt" hint-placeholder-count="4">
+              <button onClick="{{ opt.onClick }}" style="{{ opt.style }}">
+                <span style="{{ opt.badgeStyle }}">{{ opt.letter }}</span>
+                <span style="flex:1;font-size:15.5px;font-weight:500;line-height:1.4;color:#1F2A37;">{{ opt.text }}</span>
+                <sc-if value="{{ opt.glyph }}" hint-placeholder-val="{{ false }}">
+                  <span style="{{ opt.glyphStyle }}">{{ opt.glyph }}</span>
+                </sc-if>
+              </button>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ showExplain }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:18px;padding:16px 16px;border-radius:14px;background:#F3F6FA;border:1px solid #E3EAF2;">
+              <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1C6DD0;text-transform:uppercase;margin-bottom:7px;">Rationale</div>
+              <div style="font-size:14.5px;line-height:1.5;color:#3C4855;">{{ explainText }}</div>
+            </div>
+          </sc-if>
+        </div>
+
+        <!-- bottom bar -->
+        <div style="flex:none;display:flex;gap:12px;padding:14px 24px 28px;border-top:1px solid #EEF1F5;background:#fff;">
+          <button onClick="{{ onBack }}" style="{{ backStyle }}">‹ Back</button>
+          <button onClick="{{ onNext }}" style="{{ nextStyle }}">{{ nextLabel }}</button>
+        </div>
+      </div>
+
+      <!-- drawer -->
+      <div style="{{ overlayStyle }}" onClick="{{ onCloseDrawer }}"></div>
+      <div style="{{ panelStyle }}">
+        <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:22px 22px 14px;">
+          <div>
+            <div style="font-size:19px;font-weight:800;color:#0F2742;letter-spacing:-0.3px;">Questions</div>
+            <div style="font-size:13px;color:#7A8794;margin-top:3px;">{{ drawerSummary }}</div>
+          </div>
+          <button onClick="{{ onCloseDrawer }}" aria-label="Close" style="width:38px;height:38px;border:1px solid #E3E8EF;background:#fff;border-radius:11px;font-size:18px;color:#42505E;cursor:pointer;line-height:1;">✕</button>
+        </div>
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:4px 14px 24px;">
+          <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="8">
+            <button onClick="{{ item.onClick }}" style="{{ item.rowStyle }}">
+              <span style="{{ item.badgeStyle }}">{{ item.n }}</span>
+              <span style="flex:1;min-width:0;text-align:left;">
+                <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:1px;color:#9AA6B2;text-transform:uppercase;margin-bottom:2px;">{{ item.tag }}</span>
+                <span style="display:block;font-size:13.5px;font-weight:500;color:#2C3845;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ item.stem }}</span>
+              </span>
+              <sc-if value="{{ item.rightGlyph }}" hint-placeholder-val="{{ false }}">
+                <span style="{{ item.rightStyle }}">{{ item.rightGlyph }}</span>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ===================== RESULTS ===================== -->
+    <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;padding:14px 30px 34px;overflow-y:auto;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2.5px;color:#1C6DD0;text-transform:uppercase;margin-bottom:8px;">Quiz Complete</div>
+          <h1 style="margin:0 0 28px;font-size:28px;font-weight:800;color:#0F2742;letter-spacing:-0.3px;">{{ passLabel }}</h1>
+
+          <div style="position:relative;width:188px;height:188px;border-radius:50%;background: {{ ringStyle }};display:flex;align-items:center;justify-content:center;margin-bottom:30px;">
+            <div style="width:150px;height:150px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <span style="font-size:46px;font-weight:800;color:#0F2742;line-height:1;letter-spacing:-1px;">{{ scorePct }}</span>
+              <span style="font-size:14px;font-weight:600;color:#8995A2;margin-top:6px;">{{ scoreFrac }}</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;width:100%;margin-bottom:8px;">
+            <div style="flex:1;background:#E9F6EF;border:1px solid #CDEBDC;border-radius:16px;padding:16px 10px;">
+              <div style="font-size:30px;font-weight:800;color:#137A52;line-height:1;">{{ correctCount }}</div>
+              <div style="font-size:12.5px;font-weight:600;color:#3E8A66;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">Correct</div>
+            </div>
+            <div style="flex:1;background:#FBECEA;border:1px solid #F3D2CE;border-radius:16px;padding:16px 10px;">
+              <div style="font-size:30px;font-weight:800;color:#C5453B;line-height:1;">{{ wrongCount }}</div>
+              <div style="font-size:12.5px;font-weight:600;color:#B45149;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">Incorrect</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:11px;margin-top:24px;">
+          <button onClick="{{ onReview }}" style="width:100%;height:56px;border:none;border-radius:15px;background:#1C6DD0;color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(28,109,208,0.28);">Review all answers</button>
+          <button onClick="{{ onRetake }}" style="width:100%;height:52px;border:1.5px solid #D6DEE8;border-radius:15px;background:#fff;color:#42505E;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">Retake quiz</button>
+        </div>
+        <sc-if value="{{ showSubmitStatus }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ submitStatusStyle }}">{{ submitStatusText }}</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 880},
+  &quot;sheetUrl&quot;: {
+    &quot;editor&quot;: &quot;text&quot;,
+    &quot;default&quot;: &quot;&quot;,
+    &quot;section&quot;: &quot;Google Sheets Integration&quot;,
+    &quot;tsType&quot;: &quot;string&quot;
+  }
+}">
+class Component extends DCLogic {
+  state = { screen: 'start', current: 0, answers: new Array(50).fill(null), drawerOpen: false, name: '', submitStatus: 'idle' };
+
+  pool() {
+    return [
+      { tag: 'Analgesics', q: 'What is the maximum recommended daily dose of acetaminophen for a healthy adult?', options: ['2 g', '3 g', '4 g', '6 g'], answer: 2, explain: 'The ceiling is 4 g/day in healthy adults; drop to \u22643 g with hepatic impairment or chronic alcohol use.' },
+      { tag: 'NSAIDs', q: 'Ibuprofen is relatively contraindicated in a patient with which condition?', options: ['Active peptic ulcer disease', 'Seasonal allergies', 'Mild eczema', 'Lactose intolerance'], answer: 0, explain: 'NSAIDs impair the gastric mucosal barrier and can worsen ulcers and GI bleeding \u2014 avoid in active PUD.' },
+      { tag: 'Antihistamines', q: 'Which antihistamine is most likely to cause drowsiness?', options: ['Loratadine', 'Fexofenadine', 'Diphenhydramine', 'Cetirizine'], answer: 2, explain: 'Diphenhydramine is a first-generation (sedating) antihistamine; loratadine and fexofenadine are non-sedating.' },
+      { tag: 'Antihistamines', q: 'A soldier needs allergy relief but must stay alert on duty. Best choice?', options: ['Diphenhydramine', 'Loratadine', 'Hydroxyzine', 'Chlorpheniramine'], answer: 1, explain: 'Loratadine is a non-sedating second-generation antihistamine \u2014 appropriate when alertness is required.' },
+      { tag: 'GI', q: 'Loperamide is used to treat which symptom?', options: ['Constipation', 'Acute diarrhea', 'Heartburn', 'Nausea'], answer: 1, explain: 'Loperamide is an anti-motility agent for acute, non-infectious diarrhea.' },
+      { tag: 'GI \u00b7 PPI', q: 'Omeprazole belongs to which drug class?', options: ['H2 blocker', 'Proton pump inhibitor', 'Antacid', 'Prokinetic'], answer: 1, explain: 'Omeprazole is a PPI; it irreversibly blocks the gastric H+/K+ ATPase to suppress acid.' },
+      { tag: 'GI \u00b7 H2', q: 'Famotidine reduces stomach acid by which mechanism?', options: ['Neutralizing acid directly', 'Blocking H2 receptors', 'Coating the mucosa', 'Inhibiting the proton pump'], answer: 1, explain: 'Famotidine is an H2-receptor antagonist that decreases acid secretion.' },
+      { tag: 'Cold & Flu', q: 'Guaifenesin is best described as a(n):', options: ['Cough suppressant', 'Expectorant', 'Decongestant', 'Antihistamine'], answer: 1, explain: 'Guaifenesin is an expectorant \u2014 it thins secretions to make a cough more productive.' },
+      { tag: 'Cold & Flu', q: 'Dextromethorphan is used primarily as a(n):', options: ['Expectorant', 'Antitussive (cough suppressant)', 'Decongestant', 'Mucolytic'], answer: 1, explain: 'Dextromethorphan acts centrally to suppress the cough reflex.' },
+      { tag: 'Cold & Flu', q: 'Pseudoephedrine should be used cautiously in a patient with:', options: ['Uncontrolled hypertension', 'Mild dehydration', 'Lactose intolerance', 'Seasonal allergies'], answer: 0, explain: 'As a sympathomimetic decongestant it can raise blood pressure and heart rate.' },
+      { tag: 'Topicals', q: 'Hydrocortisone 1% cream is most appropriate for:', options: ['A bacterial abscess', 'Localized itching and inflammation', 'A deep laceration', 'A fungal nail infection'], answer: 1, explain: 'A low-potency topical steroid for inflammatory/pruritic skin; avoid on infected or open wounds.' },
+      { tag: 'Topicals', q: 'Bacitracin ointment is applied to:', options: ['Reduce inflammation', 'Prevent infection in minor wounds', 'Relieve itching', 'Treat fungal rashes'], answer: 1, explain: 'Bacitracin is a topical antibiotic for minor cuts, scrapes, and burns.' },
+      { tag: 'Antifungal', q: 'Clotrimazole cream is indicated for:', options: ['Bacterial cellulitis', 'Tinea (fungal) infections', 'An eczema flare', 'Sunburn'], answer: 1, explain: 'Clotrimazole is a topical antifungal for tinea pedis, cruris, and corporis.' },
+      { tag: 'NSAIDs', q: 'The usual adult dosing interval for naproxen is approximately every:', options: ['4 hours', '6 hours', '12 hours', '30 minutes'], answer: 2, explain: 'Naproxen\u2019s longer half-life allows roughly 12-hour dosing.' },
+      { tag: 'Antiemetic', q: 'Meclizine is most useful for:', options: ['Motion sickness and vertigo', 'Acid reflux', 'Constipation', 'Muscle spasm'], answer: 0, explain: 'Meclizine is an antihistamine used for vertigo and motion sickness.' },
+      { tag: 'GI', q: 'Bismuth subsalicylate may cause which harmless side effect?', options: ['Black tongue and stool', 'Blue urine', 'Yellow skin', 'Green sweat'], answer: 0, explain: 'Bismuth can transiently darken the tongue and stool \u2014 benign and reversible.' }
+    ];
+  }
+
+  questionsList() {
+    if (!this._q) {
+      const p = this.pool();
+      this._q = Array.from({ length: 50 }, (_, i) => Object.assign({}, p[i % p.length]));
+    }
+    return this._q;
+  }
+
+  select(i) {
+    const a = this.state.answers.slice();
+    a[this.state.current] = i;
+    this.setState({ answers: a });
+  }
+  goTo(i) { this.setState({ current: i, drawerOpen: false }); }
+  back() { if (this.state.current > 0) this.setState({ current: this.state.current - 1 }); }
+  next() {
+    const c = this.state.current;
+    if (c < 49) { this.setState({ current: c + 1 }); }
+    else { this.setState({ screen: 'results', drawerOpen: false, submitStatus: 'submitting' }); this.submitToSheet(); }
+  }
+  startReview() { this.setState({ screen: 'review', current: 0 }); }
+  exitToResults() { this.setState({ screen: 'results', drawerOpen: false }); }
+  retake() { this.setState({ screen: 'start', current: 0, answers: new Array(50).fill(null), drawerOpen: false, submitStatus: 'idle' }); }
+
+  async submitToSheet() {
+    const url = this.props.sheetUrl;
+    if (!url || !url.trim()) { this.setState({ submitStatus: 'no-url' }); return; }
+    try {
+      const qs = this.questionsList();
+      const ans = this.state.answers;
+      const correct = qs.reduce((n, q, i) => n + (ans[i] === q.answer ? 1 : 0), 0);
+      const pct = Math.round((correct / 50) * 100);
+      await fetch(url.trim(), {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: this.state.name,
+          score: correct + '/50',
+          percent: pct + '%',
+          passed: pct >= 80 ? 'PASS' : 'FAIL',
+          timestamp: new Date().toLocaleString()
+        })
+      });
+      this.setState({ submitStatus: 'done' });
+    } catch (e) {
+      this.setState({ submitStatus: 'error' });
+    }
+  }
+
+  optBase(state) {
+    const map = {
+      idle:     { border: '1.5px solid #E1E7EF', background: '#fff' },
+      selected: { border: '1.5px solid #1C6DD0', background: '#EFF5FE' },
+      correct:  { border: '1.5px solid #2FA779', background: '#EAF7F0' },
+      wrong:    { border: '1.5px solid #D9756B', background: '#FBEDEB' }
+    };
+    const cur = (state === 'idle' || state === 'selected');
+    return Object.assign({
+      display: 'flex', alignItems: 'center', gap: '13px', padding: '15px 15px',
+      borderRadius: '15px', width: '100%', font: 'inherit', textAlign: 'left',
+      cursor: cur ? 'pointer' : 'default', transition: 'all .15s'
+    }, map[state]);
+  }
+  optBadge(state) {
+    const map = {
+      idle:     { background: '#fff', color: '#6B7785', border: '1.5px solid #CBD5E1' },
+      selected: { background: '#1C6DD0', color: '#fff', border: '1.5px solid #1C6DD0' },
+      correct:  { background: '#2FA779', color: '#fff', border: '1.5px solid #2FA779' },
+      wrong:    { background: '#D9756B', color: '#fff', border: '1.5px solid #D9756B' }
+    };
+    return Object.assign({
+      flex: 'none', width: '30px', height: '30px', borderRadius: '50%',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontSize: '14px', fontWeight: '700'
+    }, map[state]);
+  }
+
+  buildOptions() {
+    const idx = this.state.current;
+    const q = this.questionsList()[idx];
+    const sel = this.state.answers[idx];
+    const review = this.state.screen === 'review';
+    const letters = ['A', 'B', 'C', 'D'];
+    return q.options.map((text, i) => {
+      let key = 'idle', glyph = '', gcolor = '';
+      if (review) {
+        if (i === q.answer) { key = 'correct'; glyph = '\u2713'; gcolor = '#2FA779'; }
+        else if (i === sel) { key = 'wrong'; glyph = '\u2717'; gcolor = '#D9756B'; }
+      } else if (sel === i) { key = 'selected'; }
+      return {
+        letter: letters[i], text,
+        style: this.optBase(key),
+        badgeStyle: this.optBadge(key),
+        glyph,
+        glyphStyle: { flex: 'none', fontSize: '17px', fontWeight: '700', color: gcolor },
+        onClick: review ? (() => {}) : (() => this.select(i))
+      };
+    });
+  }
+
+  buildNav() {
+    const qs = this.questionsList();
+    const review = this.state.screen === 'review';
+    return qs.map((q, i) => {
+      const answered = this.state.answers[i] != null;
+      const isCur = i === this.state.current;
+      let key;
+      if (review) key = (this.state.answers[i] === q.answer) ? 'correct' : 'incorrect';
+      else key = isCur ? 'current' : (answered ? 'answered' : 'unanswered');
+
+      const badgeMap = {
+        current:     { background: '#1C6DD0', color: '#fff', border: '1.5px solid #1C6DD0' },
+        answered:    { background: '#EAF2FD', color: '#1C6DD0', border: '1.5px solid #BBD7F6' },
+        unanswered:  { background: '#F1F4F8', color: '#9AA6B2', border: '1.5px solid #E4E9F0' },
+        correct:     { background: '#E9F6EF', color: '#137A52', border: '1.5px solid #B9E5CE' },
+        incorrect:   { background: '#FBECEA', color: '#C5453B', border: '1.5px solid #F1CBC6' }
+      };
+      const badgeStyle = Object.assign({
+        flex: 'none', width: '34px', height: '34px', borderRadius: '10px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', fontWeight: '600'
+      }, badgeMap[key]);
+
+      let rightGlyph = '', rcolor = '';
+      if (key === 'answered' || key === 'correct') { rightGlyph = '\u2713'; rcolor = key === 'correct' ? '#2FA779' : '#1C6DD0'; }
+      else if (key === 'incorrect') { rightGlyph = '\u2717'; rcolor = '#D9756B'; }
+
+      return {
+        n: i + 1,
+        tag: q.tag,
+        stem: q.q,
+        badgeStyle,
+        rowStyle: {
+          display: 'flex', alignItems: 'center', gap: '12px', width: '100%',
+          padding: '11px 12px', borderRadius: '13px', cursor: 'pointer', font: 'inherit',
+          background: isCur ? '#F4F8FE' : 'transparent',
+          border: isCur ? '1.5px solid #BBD7F6' : '1.5px solid transparent',
+          marginBottom: '2px'
+        },
+        rightGlyph,
+        rightStyle: { flex: 'none', fontSize: '15px', fontWeight: '700', color: rcolor, width: '18px', textAlign: 'center' },
+        onClick: () => this.goTo(i)
+      };
+    });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const qs = this.questionsList();
+    const q = qs[s.current];
+    const isQuiz = s.screen === 'quiz';
+    const isReview = s.screen === 'review';
+    const isQuizView = isQuiz || isReview;
+
+    const correctCount = qs.reduce((n, qq, i) => n + (s.answers[i] === qq.answer ? 1 : 0), 0);
+    const wrongCount = 50 - correctCount;
+    const pct = Math.round((correctCount / 50) * 100);
+    const passed = pct >= 80;
+    const answeredCount = s.answers.filter(a => a != null).length;
+
+    const onLast = s.current === 49;
+    const atStart = s.current === 0;
+
+    const primaryBtn = {
+      flex: 2, height: '52px', border: 'none', borderRadius: '14px', background: '#1C6DD0',
+      color: '#fff', font: 'inherit', fontSize: '16px', fontWeight: '700', cursor: 'pointer',
+      boxShadow: '0 6px 14px rgba(28,109,208,0.28)'
+    };
+    const backStyle = {
+      flex: 1, height: '52px', borderRadius: '14px', font: 'inherit', fontSize: '15px', fontWeight: '600',
+      background: '#fff',
+      border: atStart ? '1.5px solid #EDF0F4' : '1.5px solid #D6DEE8',
+      color: atStart ? '#C2CAD4' : '#42505E',
+      cursor: atStart ? 'default' : 'pointer'
+    };
+
+    return {
+      isStart: s.screen === 'start',
+      isResults: s.screen === 'results',
+      isQuizView, isReview,
+
+      nameVal: s.name,
+      onNameChange: (e) => this.setState({ name: e.target.value }),
+      beginDisabled: !s.name.trim(),
+      beginStyle: s.name.trim() ? {
+        marginTop: '18px', width: '100%', height: '58px', border: 'none', borderRadius: '16px',
+        background: '#1C6DD0', color: '#fff', fontFamily: 'inherit', fontSize: '17px',
+        fontWeight: '700', cursor: 'pointer', boxShadow: '0 10px 22px rgba(28,109,208,0.32)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'
+      } : {
+        marginTop: '18px', width: '100%', height: '58px', border: 'none', borderRadius: '16px',
+        background: '#B8CEEA', color: '#fff', fontFamily: 'inherit', fontSize: '17px',
+        fontWeight: '700', cursor: 'not-allowed', display: 'flex', alignItems: 'center',
+        justifyContent: 'center', gap: '8px'
+      },
+      onStart: () => this.setState({ screen: 'quiz', current: 0 }),
+
+      counterText: (s.current + 1) + ' / 50',
+      progressPct: Math.round(((s.current + 1) / 50) * 100),
+      currentTag: q.tag,
+      currentQuestion: q.q,
+      options: this.buildOptions(),
+
+      showExplain: isReview,
+      explainText: q.explain,
+
+      onBack: atStart ? (() => {}) : (() => this.back()),
+      backStyle,
+      onNext: () => this.next(),
+      nextStyle: primaryBtn,
+      nextLabel: isReview ? (onLast ? 'Finish review' : 'Next \u203a') : (onLast ? 'Submit quiz' : 'Next \u203a'),
+      onExitReview: () => this.exitToResults(),
+
+      onOpenDrawer: () => this.setState({ drawerOpen: true }),
+      onCloseDrawer: () => this.setState({ drawerOpen: false }),
+      drawerSummary: isReview ? (correctCount + ' correct \u00b7 ' + wrongCount + ' missed') : (answeredCount + ' answered \u00b7 ' + (50 - answeredCount) + ' left'),
+      navItems: this.buildNav(),
+      overlayStyle: {
+        position: 'absolute', inset: 0, background: 'rgba(15,30,50,0.42)',
+        opacity: s.drawerOpen ? 1 : 0, transition: 'opacity .25s ease',
+        pointerEvents: s.drawerOpen ? 'auto' : 'none', zIndex: 20
+      },
+      panelStyle: {
+        position: 'absolute', top: 0, left: 0, height: '100%', width: '86%', maxWidth: '350px',
+        background: '#fff', display: 'flex', flexDirection: 'column',
+        boxShadow: '12px 0 40px rgba(15,30,50,0.18)',
+        transform: s.drawerOpen ? 'translateX(0)' : 'translateX(-104%)',
+        transition: 'transform .28s cubic-bezier(.4,0,.2,1)', zIndex: 21,
+        borderTopRightRadius: '24px', borderBottomRightRadius: '24px'
+      },
+
+      passLabel: passed ? 'Standard met' : 'Keep studying',
+      scorePct: pct + '%',
+      scoreFrac: correctCount + ' of 50',
+      ringStyle: 'conic-gradient(' + (passed ? '#2FA779' : '#1C6DD0') + ' ' + (pct * 3.6) + 'deg, #E7ECF2 0deg)',
+      correctCount, wrongCount,
+      onReview: () => this.startReview(),
+      onRetake: () => this.retake(),
+
+      showSubmitStatus: s.submitStatus !== 'idle',
+      submitStatusText:
+        s.submitStatus === 'submitting' ? '⟳  Submitting score…' :
+        s.submitStatus === 'done'       ? '✓  Score submitted to PSG' :
+        s.submitStatus === 'no-url'     ? '⚠  No sheet URL set — configure in Tweaks' :
+        s.submitStatus === 'error'      ? '⚠  Submit failed — check connection' : '',
+      submitStatusStyle: {
+        marginTop: '14px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600',
+        padding: '11px 16px', borderRadius: '12px',
+        background: s.submitStatus === 'done' ? '#E9F6EF' : s.submitStatus === 'submitting' ? '#EAF2FD' : '#FFF6E6',
+        color:      s.submitStatus === 'done' ? '#137A52' : s.submitStatus === 'submitting' ? '#1C6DD0' : '#9A6200'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
