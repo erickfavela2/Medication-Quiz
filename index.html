@@ -271,6 +271,7 @@ class Component extends DCLogic {
       const ans = this.state.answers;
       const correct = qs.reduce((n, q, i) => n + (ans[i] === q.answer ? 1 : 0), 0);
       const pct = Math.round((correct / 50) * 100);
+      const missed = qs.map((q, i) => ans[i] !== q.answer ? i + 1 : null).filter(n => n !== null).join(', ');
       await fetch(url.trim(), {
         method: 'POST',
         mode: 'no-cors',
@@ -280,6 +281,7 @@ class Component extends DCLogic {
           score: correct + '/50',
           percent: pct + '%',
           passed: pct >= 80 ? 'PASS' : 'FAIL',
+          missed,
           timestamp: new Date().toLocaleString()
         })
       });
