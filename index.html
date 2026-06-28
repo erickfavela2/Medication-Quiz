@@ -109,8 +109,8 @@
       </div>
 
       <!-- fixed drawer overlay & panel -->
-      <div style="position:fixed; inset:0; background:rgba(15,30,50,0.42); opacity: {{ drawerOpen ? 1 : 0 }}; transition:opacity .25s ease; pointer-events: {{ drawerOpen ? 'auto' : 'none' }}; z-index:9999;" onClick="{{ onCloseDrawer }}"></div>
-      <div style="position:fixed; top:0; left:0; height:100%; width:86%; max-width:350px; background:#fff; display:flex; flex-direction:column; boxShadow:12px 0 40px rgba(15,30,50,0.18); transform: {{ drawerOpen ? 'translateX(0)' : 'translateX(-104%)' }}; transition:transform .28s cubic-bezier(.4,0,.2,1); z-index:10000; border-top-right-radius:24px; border-bottom-right-radius:24px;">
+      <div style="{{ drawerOverlayStyle }}" onClick="{{ onCloseDrawer }}"></div>
+      <div style="{{ drawerPanelStyle }}">
         <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:22px 22px 14px;">
           <div>
             <div style="font-size:19px; font-weight:800; color:#0F2742; letter-spacing:-0.3px;">Questions</div>
@@ -436,6 +436,29 @@ class Component extends DCLogic {
         justifyContent: 'center', gap: '8px'
       },
       onStart: () => this.setState({ screen: 'quiz', current: 0 }),
+      onOpenDrawer: () => this.setState({ drawerOpen: true }),
+      onCloseDrawer: () => this.setState({ drawerOpen: false }),
+      drawerOpen: s.drawerOpen,
+      drawerSummary: isReview
+        ? (correctCount + '/50 correct')
+        : (answeredCount + ' of 50 answered'),
+      navItems: this.buildNav(),
+      drawerOverlayStyle: {
+        position: 'fixed', inset: '0', background: 'rgba(15,30,50,0.42)',
+        opacity: s.drawerOpen ? 1 : 0,
+        transition: 'opacity .25s ease',
+        pointerEvents: s.drawerOpen ? 'auto' : 'none',
+        zIndex: 9999
+      },
+      drawerPanelStyle: {
+        position: 'fixed', top: 0, left: 0, height: '100%', width: '86%', maxWidth: '350px',
+        background: '#fff', display: 'flex', flexDirection: 'column',
+        boxShadow: '12px 0 40px rgba(15,30,50,0.18)',
+        transform: s.drawerOpen ? 'translateX(0)' : 'translateX(-104%)',
+        transition: 'transform .28s cubic-bezier(.4,0,.2,1)',
+        zIndex: 10000,
+        borderTopRightRadius: '24px', borderBottomRightRadius: '24px'
+      },
 
       counterText: (s.current + 1) + ' / 50',
       progressPct: Math.round(((s.current + 1) / 50) * 100),
