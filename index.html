@@ -19,16 +19,8 @@
 </helmet>
 
 <div style="min-height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:#EEF1F5;padding:24px 0;font-family:'Public Sans',system-ui,sans-serif;">
-  <div style="position:relative;width:420px;height:880px;background:#FFFFFF;border-radius:44px;overflow:hidden;box-shadow:0 24px 70px rgba(15,42,74,0.22),0 2px 6px rgba(15,42,74,0.08);display:flex;flex-direction:column;">
+  <div style="position:relative;width:100%;max-width:480px;min-height:100vh;background:#FFFFFF;display:flex;flex-direction:column;">
 
-    <!-- status bar -->
-    <div style="height:46px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-size:14px;font-weight:600;color:#1F2A37;">
-      <span style="font-variant-numeric:tabular-nums;">09:41</span>
-      <span style="display:flex;align-items:center;gap:7px;color:#1F2A37;">
-        <span style="font-size:12px;letter-spacing:1px;">5G</span>
-        <span style="display:inline-block;width:22px;height:11px;border:1.5px solid #1F2A37;border-radius:3px;position:relative;"><span style="position:absolute;inset:1.5px;width:70%;background:#1F2A37;border-radius:1px;"></span></span>
-      </span>
-    </div>
 
     <!-- ===================== START ===================== -->
     <sc-if value="{{ isStart }}" hint-placeholder-val="{{ true }}">
