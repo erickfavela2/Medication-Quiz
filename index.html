@@ -13,79 +13,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { margin: 0; font-family: 'Public Sans', system-ui, sans-serif; }
+    body { margin: 0; font-family: 'Public Sans', system-ui, sans-serif; background: #FFFFFF; }
     ::-webkit-scrollbar { width: 0; height: 0; }
   </style>
 </helmet>
 
-<div style="min-height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:#EEF1F5;padding:24px 0;font-family:'Public Sans',system-ui,sans-serif;">
-  <div style="position:relative;width:100%;max-width:480px;min-height:100vh;background:#FFFFFF;display:flex;flex-direction:column;">
-
+<div style="width:100%; max-width:480px; margin:0 auto; background:#FFFFFF; display:flex; flex-direction:column; min-height:100vh;">
 
     <!-- ===================== START ===================== -->
     <sc-if value="{{ isStart }}" hint-placeholder-val="{{ true }}">
-      <div style="flex:1;display:flex;flex-direction:column;padding:18px 30px 34px;">
-        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:0;">
-          <div style="position:relative;width:60px;height:60px;border-radius:17px;background:#1C6DD0;box-shadow:0 8px 18px rgba(28,109,208,0.3);margin-bottom:26px;">
-            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:9px;height:30px;background:#fff;border-radius:3px;"></span>
-            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:9px;background:#fff;border-radius:3px;"></span>
+      <div style="flex:1; display:flex; flex-direction:column; padding:30px 24px; justify-content:space-between; max-height:100vh; overflow:hidden;">
+        <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:0; margin-top:10px;">
+          <div style="position:relative; width:60px; height:60px; border-radius:17px; background:#1C6DD0; box-shadow:0 8px 18px rgba(28,109,208,0.3); margin-bottom:20px;">
+            <span style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:9px; height:30px; background:#fff; border-radius:3px;"></span>
+            <span style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:30px; height:9px; background:#fff; border-radius:3px;"></span>
           </div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2.5px;color:#1C6DD0;text-transform:uppercase;margin-bottom:12px;">BAS · Sick Call Ops</div>
-          <h1 style="margin:0 0 14px;font-size:34px;line-height:1.12;font-weight:800;color:#0F2742;letter-spacing:-0.5px;">Medication<br>Competency Quiz</h1>
-          <p style="margin:0 0 26px;font-size:16px;line-height:1.5;color:#5A6675;max-width:300px;">50 multiple-choice questions on the meds you'll be prescribing. Untimed — navigate freely, score and review at the end.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
-            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Analgesics</span>
-            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Antihistamines</span>
-            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">GI</span>
-            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Cold &amp; Flu</span>
-            <span style="font-size:12.5px;font-weight:600;color:#2B6CB0;background:#EAF2FD;padding:7px 13px;border-radius:999px;">Topicals</span>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:2.5px; color:#1C6DD0; text-transform:uppercase; margin-bottom:10px;">BAS · Sick Call Ops</div>
+          <h1 style="margin:0 0 12px; font-size:32px; line-height:1.12; font-weight:800; color:#0F2742; letter-spacing:-0.5px;">Medication<br>Competency Quiz</h1>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.45; color:#5A6675; max-width:320px;">50 multiple-choice questions on the meds you\'ll be prescribing. Untimed — navigate freely, score and review at the end.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+            <span style="font-size:12px; font-weight:600; color:#2B6CB0; background:#EAF2FD; padding:6px 12px; border-radius:999px;">Analgesics</span>
+            <span style="font-size:12px; font-weight:600; color:#2B6CB0; background:#EAF2FD; padding:6px 12px; border-radius:999px;">Antihistamines</span>
+            <span style="font-size:12px; font-weight:600; color:#2B6CB0; background:#EAF2FD; padding:6px 12px; border-radius:999px;">GI</span>
+            <span style="font-size:12px; font-weight:600; color:#2B6CB0; background:#EAF2FD; padding:6px 12px; border-radius:999px;">Cold &amp; Flu</span>
+            <span style="font-size:12px; font-weight:600; color:#2B6CB0; background:#EAF2FD; padding:6px 12px; border-radius:999px;">Topicals</span>
           </div>
         </div>
-        <div style="margin-top:26px;display:flex;flex-direction:column;gap:7px;">
-          <label style="font-size:13px;font-weight:700;color:#3C4855;letter-spacing:0.2px;">Full name / rank</label>
-          <input type="text" value="{{ nameVal }}" onChange="{{ onNameChange }}" placeholder="e.g. Spc. Smith" autocomplete="name" style="width:100%;height:54px;border:1.5px solid #D6DEE8;border-radius:13px;padding:0 16px;font-family:inherit;font-size:16px;color:#1F2A37;outline:none;background:#F8FAFB;" style-focus="border-color:#1C6DD0;background:#fff;box-shadow:0 0 0 4px rgba(28,109,208,0.12);" />
+        
+        <div style="margin-bottom:20px; width:100%;">
+          <div style="display:flex; flex-direction:column; gap:7px; margin-bottom:16px;">
+            <label style="font-size:13px; font-weight:700; color:#3C4855; letter-spacing:0.2px;">Rank and name</label>
+            <input type="text" value="{{ nameVal }}" onChange="{{ onNameChange }}" placeholder="e.g. SPC Smith" autocomplete="name" style="width:100%; height:52px; border:1.5px solid #D6DEE8; border-radius:13px; padding:0 16px; font-family:inherit; font-size:16px; color:#1F2A37; outline:none; background:#F8FAFB;" style-focus="border-color:#1C6DD0; background:#fff; box-shadow:0 0 0 4px rgba(28,109,208,0.12);" />
+          </div>
+          <button onClick="{{ onStart }}" disabled="{{ beginDisabled }}" style="{{ beginStyle }}">Begin quiz <span style="font-size:20px; font-weight:500;">›</span></button>
         </div>
-        <button onClick="{{ onStart }}" disabled="{{ beginDisabled }}" style="{{ beginStyle }}">Begin quiz <span style="font-size:20px;font-weight:500;">›</span></button>
-        <div style="text-align:center;font-size:13px;color:#94A0AD;margin-top:14px;">50 questions · ~20 min · 80% to pass</div>
       </div>
     </sc-if>
 
     <!-- ===================== QUIZ / REVIEW ===================== -->
     <sc-if value="{{ isQuizView }}" hint-placeholder-val="{{ true }}">
-      <div style="flex:1;display:flex;flex-direction:column;min-height:0;">
+      <div style="flex:1; display:flex; flex-direction:column; min-height:0; height:100vh;">
 
         <!-- top bar -->
-        <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:4px 22px 0;">
-          <button onClick="{{ onOpenDrawer }}" aria-label="Open question list" style="width:42px;height:42px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:9px;border-radius:11px;">
-            <span style="display:block;height:2.5px;width:100%;background:#26323F;border-radius:2px;"></span>
-            <span style="display:block;height:2.5px;width:100%;background:#26323F;border-radius:2px;"></span>
-            <span style="display:block;height:2.5px;width:72%;background:#26323F;border-radius:2px;"></span>
+        <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:12px 22px 0;">
+          <button onClick="{{ onOpenDrawer }}" aria-label="Open question list" style="width:42px; height:42px; border:none; background:transparent; display:flex; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:9px; border-radius:11px;">
+            <span style="display:block; height:2.5px; width:100%; background:#26323F; border-radius:2px;"></span>
+            <span style="display:block; height:2.5px; width:100%; background:#26323F; border-radius:2px;"></span>
+            <span style="display:block; height:2.5px; width:72%; background:#26323F; border-radius:2px;"></span>
           </button>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:#0F2742;letter-spacing:0.5px;">{{ counterText }}</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#0F2742; letter-spacing:0.5px;">{{ counterText }}</span>
             <sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
-              <button onClick="{{ onExitReview }}" style="border:1.5px solid #D6DEE8;background:#fff;color:#42505E;font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px;cursor:pointer;">Results</button>
+              <button onClick="{{ onExitReview }}" style="border:1.5px solid #D6DEE8; background:#fff; color:#42505E; font-family:inherit; font-size:13px; font-weight:600; padding:8px 14px; border-radius:10px; cursor:pointer;">Results</button>
             </sc-if>
           </div>
         </div>
 
         <!-- progress -->
-        <div style="flex:none;padding:14px 22px 6px;">
-          <div style="height:7px;width:100%;background:#E7ECF2;border-radius:99px;overflow:hidden;">
-            <div style="height:100%;border-radius:99px;background:#1C6DD0;transition:width .3s ease;width: {{ progressPct }}%;"></div>
+        <div style="flex:none; padding:10px 22px 6px;">
+          <div style="height:7px; width:100%; background:#E7ECF2; border-radius:99px; overflow:hidden;">
+            <div style="height:100%; border-radius:99px; background:#1C6DD0; transition:width .3s ease; width: {{ progressPct }}%;"></div>
           </div>
         </div>
 
         <!-- scroll content -->
-        <div style="flex:1;min-height:0;overflow-y:auto;padding:18px 26px 8px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:2px;color:#1C6DD0;text-transform:uppercase;margin-bottom:14px;">{{ currentTag }}</div>
-          <h2 style="margin:0 0 24px;font-size:23px;line-height:1.34;font-weight:700;color:#16202B;letter-spacing:-0.2px;text-wrap:pretty;">{{ currentQuestion }}</h2>
+        <div style="flex:1; min-height:0; overflow-y:auto; padding:14px 22px 8px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:2px; color:#1C6DD0; text-transform:uppercase; margin-bottom:10px;">{{ currentTag }}</div>
+          <h2 style="margin:0 0 20px; font-size:21px; line-height:1.34; font-weight:700; color:#16202B; letter-spacing:-0.2px; text-wrap:pretty;">{{ currentQuestion }}</h2>
 
-          <div style="display:flex;flex-direction:column;gap:11px;">
+          <div style="display:flex; flex-direction:column; gap:10px;">
             <sc-for list="{{ options }}" as="opt" hint-placeholder-count="4">
               <button onClick="{{ opt.onClick }}" style="{{ opt.style }}">
                 <span style="{{ opt.badgeStyle }}">{{ opt.letter }}</span>
-                <span style="flex:1;font-size:15.5px;font-weight:500;line-height:1.4;color:#1F2A37;">{{ opt.text }}</span>
+                <span style="flex:1; font-size:15px; font-weight:500; line-height:1.4; color:#1F2A37;">{{ opt.text }}</span>
                 <sc-if value="{{ opt.glyph }}" hint-placeholder-val="{{ false }}">
                   <span style="{{ opt.glyphStyle }}">{{ opt.glyph }}</span>
                 </sc-if>
@@ -94,15 +94,15 @@
           </div>
 
           <sc-if value="{{ showExplain }}" hint-placeholder-val="{{ false }}">
-            <div style="margin-top:18px;padding:16px 16px;border-radius:14px;background:#F3F6FA;border:1px solid #E3EAF2;">
-              <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1C6DD0;text-transform:uppercase;margin-bottom:7px;">Rationale</div>
-              <div style="font-size:14.5px;line-height:1.5;color:#3C4855;">{{ explainText }}</div>
+            <div style="margin-top:16px; padding:14px 14px; border-radius:14px; background:#F3F6FA; border:1px solid #E3EAF2;">
+              <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; color:#1C6DD0; text-transform:uppercase; margin-bottom:6px;">Rationale</div>
+              <div style="font-size:14px; line-height:1.45; color:#3C4855;">{{ explainText }}</div>
             </div>
           </sc-if>
         </div>
 
         <!-- bottom bar -->
-        <div style="flex:none;display:flex;gap:12px;padding:14px 24px 28px;border-top:1px solid #EEF1F5;background:#fff;">
+        <div style="flex:none; display:flex; gap:12px; padding:14px 22px 24px; border-top:1px solid #EEF1F5; background:#fff;">
           <button onClick="{{ onBack }}" style="{{ backStyle }}">‹ Back</button>
           <button onClick="{{ onNext }}" style="{{ nextStyle }}">{{ nextLabel }}</button>
         </div>
@@ -111,20 +111,20 @@
       <!-- drawer -->
       <div style="{{ overlayStyle }}" onClick="{{ onCloseDrawer }}"></div>
       <div style="{{ panelStyle }}">
-        <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:22px 22px 14px;">
+        <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:22px 22px 14px;">
           <div>
-            <div style="font-size:19px;font-weight:800;color:#0F2742;letter-spacing:-0.3px;">Questions</div>
-            <div style="font-size:13px;color:#7A8794;margin-top:3px;">{{ drawerSummary }}</div>
+            <div style="font-size:19px; font-weight:800; color:#0F2742; letter-spacing:-0.3px;">Questions</div>
+            <div style="font-size:13px; color:#7A8794; margin-top:3px;">{{ drawerSummary }}</div>
           </div>
-          <button onClick="{{ onCloseDrawer }}" aria-label="Close" style="width:38px;height:38px;border:1px solid #E3E8EF;background:#fff;border-radius:11px;font-size:18px;color:#42505E;cursor:pointer;line-height:1;">✕</button>
+          <button onClick="{{ onCloseDrawer }}" aria-label="Close" style="width:38px; height:38px; border:1px solid #E3E8EF; background:#fff; border-radius:11px; font-size:18px; color:#42505E; cursor:pointer; line-height:1;">✕</button>
         </div>
-        <div style="flex:1;min-height:0;overflow-y:auto;padding:4px 14px 24px;">
+        <div style="flex:1; min-height:0; overflow-y:auto; padding:4px 14px 24px;">
           <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="8">
             <button onClick="{{ item.onClick }}" style="{{ item.rowStyle }}">
               <span style="{{ item.badgeStyle }}">{{ item.n }}</span>
-              <span style="flex:1;min-width:0;text-align:left;">
-                <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:1px;color:#9AA6B2;text-transform:uppercase;margin-bottom:2px;">{{ item.tag }}</span>
-                <span style="display:block;font-size:13.5px;font-weight:500;color:#2C3845;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ item.stem }}</span>
+              <span style="flex:1; min-width:0; text-align:left;">
+                <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:1px; color:#9AA6B2; text-transform:uppercase; margin-bottom:2px;">{{ item.tag }}</span>
+                <span style="display:block; font-size:13.5px; font-weight:500; color:#2C3845; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ item.stem }}</span>
               </span>
               <sc-if value="{{ item.rightGlyph }}" hint-placeholder-val="{{ false }}">
                 <span style="{{ item.rightStyle }}">{{ item.rightGlyph }}</span>
@@ -137,33 +137,33 @@
 
     <!-- ===================== RESULTS ===================== -->
     <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
-      <div style="flex:1;display:flex;flex-direction:column;padding:14px 30px 34px;overflow-y:auto;">
-        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2.5px;color:#1C6DD0;text-transform:uppercase;margin-bottom:8px;">Quiz Complete</div>
-          <h1 style="margin:0 0 28px;font-size:28px;font-weight:800;color:#0F2742;letter-spacing:-0.3px;">{{ passLabel }}</h1>
+      <div style="flex:1; display:flex; flex-direction:column; padding:20px 24px 34px; overflow-y:auto; height:100vh;">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:2.5px; color:#1C6DD0; text-transform:uppercase; margin-bottom:8px;">Quiz Complete</div>
+          <h1 style="margin:0 0 24px; font-size:26px; font-weight:800; color:#0F2742; letter-spacing:-0.3px;">{{ passLabel }}</h1>
 
-          <div style="position:relative;width:188px;height:188px;border-radius:50%;background: {{ ringStyle }};display:flex;align-items:center;justify-content:center;margin-bottom:30px;">
-            <div style="width:150px;height:150px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-              <span style="font-size:46px;font-weight:800;color:#0F2742;line-height:1;letter-spacing:-1px;">{{ scorePct }}</span>
-              <span style="font-size:14px;font-weight:600;color:#8995A2;margin-top:6px;">{{ scoreFrac }}</span>
+          <div style="position:relative; width:170px; height:170px; border-radius:50%; background: {{ ringStyle }}; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+            <div style="width:136px; height:136px; border-radius:50%; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+              <span style="font-size:42px; font-weight:800; color:#0F2742; line-height:1; letter-spacing:-1px;">{{ scorePct }}</span>
+              <span style="font-size:13px; font-weight:600; color:#8995A2; margin-top:6px;">{{ scoreFrac }}</span>
             </div>
           </div>
 
-          <div style="display:flex;gap:12px;width:100%;margin-bottom:8px;">
-            <div style="flex:1;background:#E9F6EF;border:1px solid #CDEBDC;border-radius:16px;padding:16px 10px;">
-              <div style="font-size:30px;font-weight:800;color:#137A52;line-height:1;">{{ correctCount }}</div>
-              <div style="font-size:12.5px;font-weight:600;color:#3E8A66;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">Correct</div>
+          <div style="display:flex; gap:12px; width:100%; margin-bottom:8px;">
+            <div style="flex:1; background:#E9F6EF; border:1px solid #CDEBDC; border-radius:16px; padding:14px 10px;">
+              <div style="font-size:28px; font-weight:800; color:#137A52; line-height:1;">{{ correctCount }}</div>
+              <div style="font-size:12px; font-weight:600; color:#3E8A66; margin-top:6px; text-transform:uppercase; letter-spacing:0.5px;">Correct</div>
             </div>
-            <div style="flex:1;background:#FBECEA;border:1px solid #F3D2CE;border-radius:16px;padding:16px 10px;">
-              <div style="font-size:30px;font-weight:800;color:#C5453B;line-height:1;">{{ wrongCount }}</div>
-              <div style="font-size:12.5px;font-weight:600;color:#B45149;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">Incorrect</div>
+            <div style="flex:1; background:#FBECEA; border:1px solid #F3D2CE; border-radius:16px; padding:14px 10px;">
+              <div style="font-size:28px; font-weight:800; color:#C5453B; line-height:1;">{{ wrongCount }}</div>
+              <div style="font-size:12px; font-weight:600; color:#B45149; margin-top:6px; text-transform:uppercase; letter-spacing:0.5px;">Incorrect</div>
             </div>
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:11px;margin-top:24px;">
-          <button onClick="{{ onReview }}" style="width:100%;height:56px;border:none;border-radius:15px;background:#1C6DD0;color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(28,109,208,0.28);">Review all answers</button>
-          <button onClick="{{ onRetake }}" style="width:100%;height:52px;border:1.5px solid #D6DEE8;border-radius:15px;background:#fff;color:#42505E;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;">Retake quiz</button>
+        <div style="display:flex; flex-direction:column; gap:11px; margin-top:20px;">
+          <button onClick="{{ onReview }}" style="width:100%; height:54px; border:none; border-radius:15px; background:#1C6DD0; color:#fff; font-family:inherit; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 8px 18px rgba(28,109,208,0.28);">Review all answers</button>
+          <button onClick="{{ onRetake }}" style="width:100%; height:50px; border:1.5px solid #D6DEE8; border-radius:15px; background:#fff; color:#42505E; font-family:inherit; font-size:15px; font-weight:600; cursor:pointer;">Retake quiz</button>
         </div>
         <sc-if value="{{ showSubmitStatus }}" hint-placeholder-val="{{ false }}">
           <div style="{{ submitStatusStyle }}">{{ submitStatusText }}</div>
@@ -171,14 +171,13 @@
       </div>
     </sc-if>
 
-  </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 880},
   &quot;sheetUrl&quot;: {
     &quot;editor&quot;: &quot;text&quot;,
-    &quot;default&quot;: &quot;&quot;,
+    &quot;default&quot;: &quot;https://script.google.com/macros/s/AKfycbxacCtuCdiBlDOLt4TkD4fwgDil1b0gdFjyTyyjx8wA8tO8cUCJVa-xdtCNHZLGZbYN/exec&quot;,
     &quot;section&quot;: &quot;Google Sheets Integration&quot;,
     &quot;tsType&quot;: &quot;string&quot;
   }
@@ -186,7 +185,7 @@
 class Component extends DCLogic {
   state = { screen: 'start', current: 0, answers: new Array(50).fill(null), drawerOpen: false, name: '', submitStatus: 'idle' };
 
-    pool() {
+  pool() {
     return [
       { tag: 'Analgesics \u00b7 Cepacol', q: 'What is Cepacol indicated for, and what is the correct dosing interval, maximum daily lozenge limit, and maximum dispense duration?', options: ['Nasal congestion and cough; one lozenge every 4-6 hours; max 8/day; up to 3 days', 'Sore throat and ear pain; one lozenge every 1-2 hours max 16/day; up to 3 days', 'Sore throat and cough; one lozenge every 2-4 hours; max 12/day; up to 5 days', 'Cough and fever; one lozenge every 6 hours; max 6/day; up to 7 days'], answer: 2, explain: 'Cepacol (Benzocaine-Dextromethorphan) is indicated for sore throat and cough. Dose is 1 lozenge every 2-4 hours, max 12/day, for up to 5 days.' },
       { tag: 'NSAIDs \u00b7 Ibuprofen', q: 'Which best describes the mechanism of action of Ibuprofen?', options: ['Selective COX-2 inhibitor that reduces peripheral prostaglandin synthesis only', 'Binds glucocorticoid receptors to suppress systemic inflammation', 'Blocks voltage-gated sodium channels to inhibit pain signal transmission', 'Non-selective COX-1 and COX-2 inhibitor that reduces prostaglandin synthesis'], answer: 3, explain: 'Ibuprofen is a non-selective inhibitor of cyclooxygenase-1 (COX-1) and cyclooxygenase-2 (COX-2), which downregulates prostaglandin synthesis.' },
@@ -206,7 +205,7 @@ class Component extends DCLogic {
       { tag: 'Antihistamines \u00b7 Diphenhydramine', q: 'Which set of indications is authorized for Diphenhydramine at BAS sick call?', options: ['Allergies, urticaria, nasal congestion, and motion sickness', 'Allergies, urticaria, insomnia, and motion sickness', 'Allergies and nasal congestion only', 'Insomnia and motion sickness only'], answer: 1, explain: 'Diphenhydramine crosses the blood-brain barrier, offering central therapeutic effects for acute insomnia and motion sickness along with standard anti-allergy coverage.' },
       { tag: 'Antihistamines \u00b7 Diphenhydramine', q: 'What is the correct dose, maximum daily tablet count, and dispense duration for Diphenhydramine 25 mg?', options: ['1 tablet every 6 hours; max 6 tablets/day; up to 3 days', '2 tablets every 8 hours; max 8 tablets/day; up to one week', '1-2 tablets every 4-6 hours; max 12 tablets/day; up to 5 days', '1-2 tablets every 4-6 hours; max 8 tablets/day; up to 5 days'], answer: 2, explain: 'Dose range is 25-50 mg (1-2 tabs) every 4-6 hours, capping safely at 12 tablets/day (300 mg) for up to 5 days.' },
       { tag: 'Antihistamines \u00b7 Diphenhydramine', q: 'Which presentation is consistent with severe Diphenhydramine toxicity from a single dose greater than 1g?', options: ['Miosis, bradycardia, excessive secretions, and bronchospasm', 'Delirium, seizures, psychosis, hypotension, hallucinations, and QT/QRS prolongation', 'Hyperthermia, rhabdomyolysis, and metabolic acidosis', 'Liver failure, jaundice, and elevated transaminases'], answer: 1, explain: 'Massive anticholinergic toxidromes trigger severe central nervous system disruption, cardiovascular widening, and hallucinations.' },
-      { tag: 'Cold & Flu \u00b7 Oxymetazoline', q: 'What is the mechanism of action of Oxymetazoline nasal spray?', options: ['Binds glucocorticoid receptors in nasal mucosa to reduce inflammation', 'Inverse agonist of H1 receptors preventing histamine-triggered nasal congestion', 'Stimulates alpha receptors causing vasoconstriction of nasal arterioles, reducing swelling'], answer: 2, explain: 'Oxymetazoline directly stimulates alpha-adrenergic receptors, causing powerful local vascular constriction to clear structural swelling.' },
+      { tag: 'Cold & Flu \u00b7 Oxymetazoline', q: 'What is the mechanism of action of Oxymetazoline nasal spray?', options: ['Binds glucocorticoid receptors in nasal mucosa to reduce inflammation', 'Inverse agonist of H1 receptors preventing histamine-triggered nasal congestion', 'Stimulates alpha receptors causing vasoconstriction of nasal arterioles, reducing swelling', 'Directly targets beta-2 adrenergic receptors to trigger bronchodilation'], answer: 2, explain: 'Oxymetazoline directly stimulates alpha-adrenergic receptors, causing powerful local vascular constriction to clear structural swelling.' },
       { tag: 'Cold & Flu \u00b7 Oxymetazoline', q: 'In addition to nasal congestion from colds and allergies, what other condition may Oxymetazoline be used to treat at BAS sick call?', options: ['Acute bacterial sinusitis', 'Epistaxis not responsive to direct pressure', 'Serous otitis media', 'Excessive earwax requiring irrigation'], answer: 1, explain: 'Its rapid local vasoconstriction properties make it a vital secondary countermeasure for stopping persistent nosebleeds.' },
       { tag: 'Cold & Flu \u00b7 Oxymetazoline', q: 'What is the correct dosing interval, maximum duration, and what complication results from exceeding that duration?', options: ['Every 4-6 hours; max 5 days; rhinitis atrophicans', 'Every 6-8 hours; max 7 days; mucosal ulceration and epistaxis', 'Every 10-12 hours; max 3 days; rebound congestion (rhinitis medicamentosa)', 'Every 8 hours; max 10 days; adrenal suppression from prolonged alpha agonism'], answer: 2, explain: 'Never exceed 3 days of consecutive use. Beyond this window, down-regulation of alpha receptors causes severe rebound congestion.' },
       { tag: 'Cold & Flu \u00b7 Saline Mist', q: 'How does Saline Mist work, and what is it indicated for?', options: ['Stimulates alpha receptors causing vasoconstriction; indicated for nasal congestion from colds and allergies', 'Moisturizes and loosens thick nasal mucus; indicated for dry, irritated nasal passages from colds, allergies, low humidity, or irritants', 'Blocks H1 receptors in nasal mucosa; indicated for allergic rhinitis and hay fever', 'Coats the nasal mucosa with an anti-inflammatory barrier; indicated for acute sinusitis'], answer: 1, explain: 'Saline serves strictly as a mechanical, non-pharmacologic rinse to hydrate tissue and thin out dry crusting or mucus.' },
@@ -241,7 +240,7 @@ class Component extends DCLogic {
     ];
   }
 
-    questionsList() {
+  questionsList() {
     if (!this._q) {
       this._q = this.pool();
     }
@@ -426,13 +425,13 @@ class Component extends DCLogic {
       onNameChange: (e) => this.setState({ name: e.target.value }),
       beginDisabled: !s.name.trim(),
       beginStyle: s.name.trim() ? {
-        marginTop: '18px', width: '100%', height: '58px', border: 'none', borderRadius: '16px',
-        background: '#1C6DD0', color: '#fff', fontFamily: 'inherit', fontSize: '17px',
+        marginTop: '10px', width: '100%', height: '54px', border: 'none', borderRadius: '16px',
+        background: '#1C6DD0', color: '#fff', fontFamily: 'inherit', fontSize: '16px',
         fontWeight: '700', cursor: 'pointer', boxShadow: '0 10px 22px rgba(28,109,208,0.32)',
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'
       } : {
-        marginTop: '18px', width: '100%', height: '58px', border: 'none', borderRadius: '16px',
-        background: '#B8CEEA', color: '#fff', fontFamily: 'inherit', fontSize: '17px',
+        marginTop: '10px', width: '100%', height: '54px', border: 'none', borderRadius: '16px',
+        background: '#B8CEEA', color: '#fff', fontFamily: 'inherit', fontSize: '16px',
         fontWeight: '700', cursor: 'not-allowed', display: 'flex', alignItems: 'center',
         justifyContent: 'center', gap: '8px'
       },
@@ -452,31 +451,6 @@ class Component extends DCLogic {
       onNext: () => this.next(),
       nextStyle: primaryBtn,
       nextLabel: isReview ? (onLast ? 'Finish review' : 'Next \u203a') : (onLast ? 'Submit quiz' : 'Next \u203a'),
-      onExitReview: () => this.exitToResults(),
-
-      onOpenDrawer: () => this.setState({ drawerOpen: true }),
-      onCloseDrawer: () => this.setState({ drawerOpen: false }),
-      drawerSummary: isReview ? (correctCount + ' correct \u00b7 ' + wrongCount + ' missed') : (answeredCount + ' answered \u00b7 ' + (50 - answeredCount) + ' left'),
-      navItems: this.buildNav(),
-      overlayStyle: {
-        position: 'absolute', inset: 0, background: 'rgba(15,30,50,0.42)',
-        opacity: s.drawerOpen ? 1 : 0, transition: 'opacity .25s ease',
-        pointerEvents: s.drawerOpen ? 'auto' : 'none', zIndex: 20
-      },
-      panelStyle: {
-        position: 'absolute', top: 0, left: 0, height: '100%', width: '86%', maxWidth: '350px',
-        background: '#fff', display: 'flex', flexDirection: 'column',
-        boxShadow: '12px 0 40px rgba(15,30,50,0.18)',
-        transform: s.drawerOpen ? 'translateX(0)' : 'translateX(-104%)',
-        transition: 'transform .28s cubic-bezier(.4,0,.2,1)', zIndex: 21,
-        borderTopRightRadius: '24px', borderBottomRightRadius: '24px'
-      },
-
-      passLabel: passed ? 'Standard met' : 'Keep studying',
-      scorePct: pct + '%',
-      scoreFrac: correctCount + ' of 50',
-      ringStyle: 'conic-gradient(' + (passed ? '#2FA779' : '#1C6DD0') + ' ' + (pct * 3.6) + 'deg, #E7ECF2 0deg)',
-      correctCount, wrongCount,
       onReview: () => this.startReview(),
       onRetake: () => this.retake(),
 
@@ -484,7 +458,7 @@ class Component extends DCLogic {
       submitStatusText:
         s.submitStatus === 'submitting' ? '⟳  Submitting score…' :
         s.submitStatus === 'done'       ? '✓  Score submitted to PSG' :
-        s.submitStatus === 'no-url'     ? '⚠  No sheet URL set — configure in Tweaks' :
+        s.submitStatus === 'no-url'     ? '⚠  No sheet URL set' :
         s.submitStatus === 'error'      ? '⚠  Submit failed — check connection' : '',
       submitStatusStyle: {
         marginTop: '14px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600',
